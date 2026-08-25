@@ -1,9 +1,10 @@
 from sqlalchemy import insert, select
 from src.models.entities.users import Users
 from src.models.settings.database_connection_handler import DBConnectionHandler
+from .interfaces.users_repository import UsersRepositoryInterface
 
 # pylint:disable = W0212
-class UsersRepository:
+class UsersRepository(UsersRepositoryInterface):
     async def insert_user(self, user_infos: dict) -> None:
         async with DBConnectionHandler() as db:
             query = insert(Users).values(**user_infos)
