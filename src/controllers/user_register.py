@@ -7,7 +7,7 @@ class UserRegister:
     async def register_user(self, user_data: dict) -> dict:
         self.__validate_user_data(user_data)
         await self.__registry_user(user_data)
-        self.__form_response(user_data)
+        return self.__form_response(user_data)
 
     def __validate_user_data(self, user_data: dict) -> None:
         age = user_data["idade"]
