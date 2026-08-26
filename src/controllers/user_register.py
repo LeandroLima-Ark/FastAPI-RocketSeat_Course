@@ -1,7 +1,7 @@
 from src.models.repositories.interfaces.users_repository import UsersRepositoryInterface
 
 class UserRegister:
-    def __init__(self, users_repository: UsersRepositoryInterface):
+    def __init__(self, users_repository: UsersRepositoryInterface) -> None:
         self.users_repository = users_repository
 
     async def register_user(self, user_data: dict) -> dict:
@@ -14,7 +14,7 @@ class UserRegister:
         name = user_data["nome"]
 
         if name not in ["Leandro", "Raul", "Amauri", "Yago", "Carlos"]:
-            raise Exception("Nome não encontrada")
+            raise Exception("Nome não encontrado")
 
         if age < 0 or age > 200:
             raise Exception("Idade invalida para cadastro")
