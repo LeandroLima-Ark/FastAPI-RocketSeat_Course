@@ -28,5 +28,5 @@ class UserRegister(UserRegisterInterface):
         return{
             "type": "USERS",
             "count": 1,
-            "attributes": user_data
+            "atributtes": user_data
         }

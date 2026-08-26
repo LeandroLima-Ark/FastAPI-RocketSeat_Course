@@ -7,6 +7,6 @@ class UserFinderView:
         self.__controller = controller
 
     async def handle_find_user_by_name(self, http_request: HttpRequest) -> HttpResponse:
-        user_data = http_request.body
+        user_data = http_request.path_params["nome"]
         response = await self.__controller.find_user_by_name(user_data)
         return HttpResponse(body=response, status_code=200)
