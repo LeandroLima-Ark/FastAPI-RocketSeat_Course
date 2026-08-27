@@ -1,5 +1,6 @@
 import pytest
 from src.controllers.user_register import UserRegister
+from src.errors.types.http_bad_request_error import HttpBadRequestError
 
 class UserRepositoryMock:
     def __init__(self):
@@ -36,7 +37,7 @@ async def test_register_user_error_name():
         "idade": 100,
     }
 
-    with pytest.raises(Exception) as excinfo:
+    with pytest.raises(HttpBadRequestError) as excinfo:
         await user_register.register_user(invalid_user_data)
 
     assert str(excinfo.value) == "Nome não encontrado"
@@ -52,7 +53,7 @@ async def test_register_user_error_age():
         "idade": 300,
     }
 
-    with pytest.raises(Exception) as excinfo:
+    with pytest.raises(HttpBadRequestError) as excinfo:
         await user_register.register_user(invalid_user_data)
 
     assert str(excinfo.value) == "Idade invalida para cadastro"

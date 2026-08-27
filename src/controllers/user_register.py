@@ -1,4 +1,5 @@
 from src.models.repositories.interfaces.users_repository import UsersRepositoryInterface
+from src.errors.types.http_bad_request_error import HttpBadRequestError
 from .interfaces.user_register import UserRegisterInterface
 
 # pylint:disable = W0719
@@ -16,10 +17,10 @@ class UserRegister(UserRegisterInterface):
         name = user_data["nome"]
 
         if name not in ["Leandro", "Raul", "Amauri", "Yago", "Carlos"]:
-            raise Exception("Nome não encontrado")
+            raise HttpBadRequestError("Nome não encontrado")
 
         if age < 0 or age > 200:
-            raise Exception("Idade invalida para cadastro")
+            raise HttpBadRequestError("Idade invalida para cadastro")
 
     async def __registry_user(self, user_data: dict) -> None:
         await self.users_repository.insert_user(user_data)
